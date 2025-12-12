@@ -5,6 +5,7 @@ import { CONTRACT_ADDRESS, CONTRACT_ABI } from "./constant";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Wallet, Copy, Coins, Box, Activity, ArrowRight } from "lucide-react";
+import { TransferAction } from "@/components/ui/transfer/TransferAction";
 
 export default function Home() {
   const [balance, setBalance] = useState("0");
@@ -123,7 +124,7 @@ export default function Home() {
         {/* Dashboard Content */}
         {isConnected ? (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* Left Column: Wallet Card */}
+            {/* Wallet Card */}
             <div className="md:col-span-5 space-y-6">
               <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
@@ -177,7 +178,7 @@ export default function Home() {
 
             {/* Token Stats*/}
             <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Stat Card 1: Token Name */}
+              {/* Token Name */}
               <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-4">
                   <Box className="w-5 h-5" />
@@ -227,6 +228,14 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
+              </div>
+              {/* Transfers Component Here*/}
+              <div className="sm:col-span-2 rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                <TransferAction
+                  balance={balance}
+                  tokenSymbol={tokenSymbol}
+                  onTransferSuccess={loadTokenData.bind(null, account)}
+                />
               </div>
             </div>
           </div>
