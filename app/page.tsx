@@ -234,7 +234,12 @@ export default function Home() {
                 <TransferAction
                   balance={balance}
                   tokenSymbol={tokenSymbol}
-                  onTransferSuccess={loadTokenData.bind(null, account)}
+                  onTransferSuccess={async () => {
+                    await loadTokenData(account);
+                    toast.success(
+                      "Balance successfully transferred and updated."
+                    );
+                  }}
                 />
               </div>
             </div>
